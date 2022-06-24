@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:personal_expenses/widget/chart.dart';
 import 'package:personal_expenses/widget/new_transaction.dart';
@@ -49,8 +51,7 @@ class myapp extends StatefulWidget {
 class _myappState extends State<myapp> {
 
   final List<Transaction> _transactions = [
-    // Transaction( "t1", "New Shose", 69.99, DateTime.now()),
-    // Transaction( "t2", "Weekly Grocerise",12.53, DateTime.now())
+ 
   ];
 
 List<Transaction> get _recentTransaction{
@@ -98,25 +99,29 @@ void _deleteTansaction(String id)
   @override
   Widget build(BuildContext context) {
   
-
-
-    return  Scaffold(
-        appBar: AppBar(
+final appBar =AppBar(
           actions: [
             IconButton(onPressed: ()=>_startnewtransaction(context),
              icon: Icon(Icons.add))
           ],
           title: Text('Personal Expenses',),
           backgroundColor: Theme.of(context).primaryColor,
-        ),
+        );
+
+    return  Scaffold(
+        appBar: appBar,
         body:
         SingleChildScrollView(child:
         Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-        Chart(_recentTransaction),
-          TransactionList(_transactions,_deleteTansaction)
-      
+        Container(
+          height: (MediaQuery.of(context).size.height-appBar.preferredSize.height- MediaQuery.of(context).padding.top)*0.4,
+          child: Chart(_recentTransaction)),
+          Container(
+          height: (MediaQuery.of(context).size.height-appBar.preferredSize.height- MediaQuery.of(context).padding.top)*0.4,
+          child: TransactionList(_transactions,_deleteTansaction)
+          )
             
           ],
         ),

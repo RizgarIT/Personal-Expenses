@@ -11,11 +11,12 @@ class ChartBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return  LayoutBuilder(builder: (ctx, constraint){
+    return  Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
-          height: 20,
+          height: constraint.maxHeight *0.15,
           child: FittedBox(
             child: Text(
               '\$${SpendingAmount.toStringAsFixed(0)}',
@@ -23,11 +24,11 @@ class ChartBar extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 4,
+          height: constraint.maxHeight *0.05,
         ),
         Container(
           width: 10,
-          height: 60,
+          height: constraint.maxHeight *0.6,
           child: Stack(
             children: [
               Container(
@@ -53,10 +54,13 @@ class ChartBar extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 4,
+          height: constraint.maxHeight *0.05,
         ),
-        Text(label),
+        Container(
+          height: constraint.maxHeight *0.15,
+          child: Text(label)),
       ],
     );
+    });
   }
 }
