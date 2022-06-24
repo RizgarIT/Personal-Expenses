@@ -46,7 +46,7 @@ class Chart extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: groupeTransactionValue.map((data) {
             return Container(
-              width: 40,
+              width: 50,
               child: ChartBar(
                 (data['day'] as String),
                 (data['amount'] as double),

@@ -80,7 +80,9 @@ class _myappState extends State<myapp> {
 
     final isLadscape =
         MediaQuery.of(context).orientation == Orientation.landscape;
-    final appBar = AppBar(
+
+
+    final  appBar =AppBar(
       actions: [
         IconButton(
             onPressed: () => _startnewtransaction(context),
@@ -97,9 +99,8 @@ final txtwidget =Container(
                             MediaQuery.of(context).padding.top) *
                         0.4,
                     child: TransactionList(_transactions, _deleteTansaction));
-    return Scaffold(
-      appBar: appBar,
-      body: SingleChildScrollView(
+
+                    final pageBody =SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -139,7 +140,22 @@ final txtwidget =Container(
                 :txtwidget 
           ],
         ),
+      );
+    return Platform.isIOS? CupertinoPageScaffold(child: pageBody , navigationBar:CupertinoNavigationBar(middle:  Text(
+        'Personal Expenses',
       ),
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+        GestureDetector(
+          onTap:(){ _startnewtransaction(context);} ,
+          child: Icon(CupertinoIcons.add),
+        )
+      ],),
+      ),
+      ): Scaffold(
+      appBar: appBar,
+      body: pageBody,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton:Platform.isIOS ?Container(): FloatingActionButton(
         child: Icon(

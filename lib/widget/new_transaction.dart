@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
+import 'package:personal_expenses/widget/Adaptive_flat_button.dart';
 
 class newTransaction extends StatefulWidget {
   Function addnewtransaction;
@@ -117,22 +118,7 @@ if(_amountInput.text.isEmpty)
                           'No data chosen !':DateFormat.yMEd().format(datetime),
                           style: TextStyle(fontWeight: FontWeight.bold),
                         )),
-                   Platform.isIOS?CupertinoButton(
-                    onPressed: _datatimePicker,
-                      child: Text(
-                        'choose Data',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      color: Theme.of(context).primaryColor,)
-                       :
-                      FlatButton(
-                      onPressed: _datatimePicker,
-                      child: Text(
-                        'choose Data',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      textColor: Theme.of(context).primaryColor,
-                    ),
+                  AdaptiveFltaButton('Choose Data',_datatimePicker),
                   ],
                 ),
               ),
