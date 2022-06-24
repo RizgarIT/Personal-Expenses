@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
@@ -115,7 +117,15 @@ if(_amountInput.text.isEmpty)
                           'No data chosen !':DateFormat.yMEd().format(datetime),
                           style: TextStyle(fontWeight: FontWeight.bold),
                         )),
-                    FlatButton(
+                   Platform.isIOS?CupertinoButton(
+                    onPressed: _datatimePicker,
+                      child: Text(
+                        'choose Data',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      color: Theme.of(context).primaryColor,)
+                       :
+                      FlatButton(
                       onPressed: _datatimePicker,
                       child: Text(
                         'choose Data',
