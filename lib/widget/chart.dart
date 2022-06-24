@@ -38,7 +38,7 @@ class Chart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: EdgeInsets.all(9),
       child: Card(
         elevation: 6,
         margin: EdgeInsets.all(10),
@@ -46,7 +46,7 @@ class Chart extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: groupeTransactionValue.map((data) {
             return Container(
-              width: 50,
+              width: 40,
               child: ChartBar(
                 (data['day'] as String),
                 (data['amount'] as double),

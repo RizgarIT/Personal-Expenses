@@ -76,69 +76,73 @@ if(_amountInput.text.isEmpty)
     return Card(
       elevation: 5,
       child: Container(
-        padding: EdgeInsets.all(10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            TextField(
-              decoration: InputDecoration(
-                  labelText: 'Title',
+        padding: EdgeInsets.only(left: 10,top:10,right: 10,bottom: MediaQuery.of(context).viewInsets.bottom +10),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              TextField(
+                decoration: InputDecoration(
+                    labelText: 'Title',
+                    labelStyle: TextStyle(
+                      color: Theme.of(context).primaryColor,
+                    )),
+                cursorColor: Theme.of(context).primaryColor,
+                controller: _titleInput,
+                onSubmitted: (_) => submit,
+              ),
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Amount',
                   labelStyle: TextStyle(
                     color: Theme.of(context).primaryColor,
-                  )),
-              cursorColor: Theme.of(context).primaryColor,
-              controller: _titleInput,
-              onSubmitted: (_) => submit,
-            ),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Amount',
-                labelStyle: TextStyle(
-                  color: Theme.of(context).primaryColor,
+                  ),
                 ),
+                cursorColor: Theme.of(context).primaryColor,
+                controller: _amountInput,
+                keyboardType: TextInputType.number,
+                onSubmitted: (_) => submit,
               ),
-              cursorColor: Theme.of(context).primaryColor,
-              controller: _amountInput,
-              keyboardType: TextInputType.number,
-              onSubmitted: (_) => submit,
-            ),
-            Container(
-              height: 150,
-              child: Row(
-                children: [
-                  Expanded(
-                      flex: 1,
+              Container(
+                height:   MediaQuery.of(context).size.height 
+                              * 0.2,
+                child: Row(
+                  children: [
+                    Expanded(
+                        flex: 1,
+                        child: Text(
+                            datetime==null?
+                          'No data chosen !':DateFormat.yMEd().format(datetime),
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        )),
+                    FlatButton(
+                      onPressed: _datatimePicker,
                       child: Text(
-                          datetime==null?
-                        'No data chosen !':DateFormat.yMEd().format(datetime),
+                        'choose Data',
                         style: TextStyle(fontWeight: FontWeight.bold),
-                      )),
-                  FlatButton(
-                    onPressed: _datatimePicker,
-                    child: Text(
-                      'choose Data',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      textColor: Theme.of(context).primaryColor,
                     ),
-                    textColor: Theme.of(context).primaryColor,
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              height: 118,
-              child: Center(
-                child: RaisedButton(
-                  onPressed: submit,
-                  child: Text(
-                    "Add Transaction",
-                    style: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.bold),
-                  ),
-                  color: Theme.of(context).secondaryHeaderColor,
+                  ],
                 ),
               ),
-            )
-          ],
+              Container(
+                height:  MediaQuery.of(context).size.height 
+                              * 0.1,
+                child: Center(
+                  child: RaisedButton(
+                    onPressed: submit,
+                    child: Text(
+                      "Add Transaction",
+                      style: TextStyle(
+                          color: Colors.black, fontWeight: FontWeight.bold),
+                    ),
+                    color: Theme.of(context).secondaryHeaderColor,
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

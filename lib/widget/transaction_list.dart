@@ -13,22 +13,24 @@ class TransactionList extends StatelessWidget {
     return Container(
       height: 400,
       child: transactions.isEmpty
-          ? Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Container(
-                    height: 200,
-                    child: Image.asset(
-                      "assets/image/stopwatch.png",
-                      fit: BoxFit.cover,
-                    )),
-                Text("Not transactions add yet",
-                    style: TextStyle(
-                        color: Colors.red,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold))
-              ],
-            )
+          ? LayoutBuilder(builder: (ctx, constrain) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Container(
+                      height: constrain.maxHeight * 0.6,
+                      child: Image.asset(
+                        "assets/image/stopwatch.png",
+                        fit: BoxFit.cover,
+                      )),
+                  Text("Not transactions add yet",
+                      style: TextStyle(
+                          color: Colors.red,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold))
+                ],
+              );
+            })
           : ListView.builder(
               itemBuilder: (tx, index) {
                 return Card(
@@ -64,14 +66,21 @@ class TransactionList extends StatelessWidget {
                           color: Colors.grey,
                         ),
                       ),
-                      trailing: IconButton(
-                        icon: Icon(Icons.delete),
-                        color: Theme.of(context).errorColor,
-                        onPressed:()
-                        {
-                           deleteTx(transactions[index].id);
-                        }
-                      ),
+                      trailing: MediaQuery.of(context).size.width > 450
+                          ?FlatButton.icon(
+                              onPressed: () {
+                                deleteTx(transactions[index].id);
+                              },
+                              icon: Icon(Icons.delete),
+                              textColor: Theme.of(context).errorColor,
+                              label: Text("delete"),
+                            ) 
+                          : IconButton(
+                              icon: Icon(Icons.delete),
+                              color: Theme.of(context).errorColor,
+                              onPressed: () {
+                                deleteTx(transactions[index].id);
+                              }),
                     ));
               },
               itemCount: transactions.length,

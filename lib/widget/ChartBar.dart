@@ -16,7 +16,7 @@ class ChartBar extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
-          height: constraint.maxHeight *0.15,
+          height: constraint.maxHeight *0.08,
           child: FittedBox(
             child: Text(
               '\$${SpendingAmount.toStringAsFixed(0)}',
@@ -24,7 +24,7 @@ class ChartBar extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: constraint.maxHeight *0.05,
+          height: constraint.maxHeight *0.03,
         ),
         Container(
           width: 10,
@@ -57,8 +57,8 @@ class ChartBar extends StatelessWidget {
           height: constraint.maxHeight *0.05,
         ),
         Container(
-          height: constraint.maxHeight *0.15,
-          child: Text(label)),
+          height: constraint.maxHeight *0.09,
+          child: FittedBox(child: Text(label))),
       ],
     );
     });
